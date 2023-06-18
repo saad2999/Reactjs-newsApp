@@ -6,7 +6,7 @@ export class NewsItem extends Component {
     return (
       
       <div className='my-3'>
-       <div className="card" style={{width: "18rem"}}>
+       <div className="card" >
         <img src={!imageUrl? "https://cdn.arstechnica.net/wp-content/uploads/2018/07/180711_MacBookPro_NewYorkCity_BK_41579-760x380.jpg":imageUrl} className="card-img-top" alt="..."/>
          <div className="card-body">
          <h5 className="card-title">{title}...</h5>
