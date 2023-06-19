@@ -71,7 +71,7 @@ export class News extends Component {
         <div className="row">
             {!this.state.loading && this.state.articles.map((element)=>{
                 return <div className="col-md-4"key={element.url}>
-                <NewsItem  title={ element.title? element.title.slice(0.45):""} description={element.description? element.description.slice(0,85):""} imageUrl={element.urlToImage}  newsUrl={element.url}/>
+                <NewsItem  title={ element.title? element.title.slice(0.45):""} description={element.description? element.description.slice(0,85):""} imageUrl={element.urlToImage}  newsUrl={element.url} author={element.author} publishedAt={element.publishedAt} source={element.source.name}/>
                 </div>
 
 
@@ -81,7 +81,7 @@ export class News extends Component {
             
         </div>
         <div className="container d-flex justify-content-between">
-        <button disabled={this.state.page<=1} type="button" className="btn btn-dark  " onClick={this.handlePreviousPage}> {'\u2190'} Previous</button>
+        <button disabled={this.state.page<=1} type="button" className="btn btn-dark" onClick={this.handlePreviousPage}> {'\u2190'} Previous</button>
         <button disabled={this.state.page+1>Math.ceil(this.state.totalResults/this.props.pageSize)} type="button" className="btn btn-dark  "onClick={this.handleNextPage}>Next {'\u2192'}</button>
         </div>
 
