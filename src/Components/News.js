@@ -24,7 +24,10 @@ export class News extends Component {
             }
         }
         handleNextPage= async()=>{
+          
           if(!(this.state.page+1>Math.ceil(this.state.totalResults/this.props.pageSize)))
+        
+
           {
             let url =`https://newsapi.org/v2/top-headlines?country=${this.props.Country}&category=${this.props.category}&apiKey=5371b94aa0f14a2790598db6d4898226&page=${this.state.page+1}&pageSize=${this.props.pageSize}`
             this.setState({loading:true })
@@ -54,7 +57,7 @@ export class News extends Component {
         }
          async componentDidMount(){
             
-            let url =`https://newsapi.org/v2/top-headlines?country=${this.props.Country}&category=${this.props.category}&apiKey=5371b94aa0f14a2790598db6d4898226&page=${this.state.page+1}&pageSize=${this.props.pageSize}`
+            let url =`https://newsapi.org/v2/top-headlines?country=${this.props.Country}&category=${this.props.category}&apiKey=5371b94aa0f14a2790598db6d4898226&page=${this.state.page}&pageSize=${this.props.pageSize}`
             this.setState({loading:true })
             let data = await fetch(url);
             let parsedData = await data.json(data);
@@ -82,7 +85,8 @@ export class News extends Component {
         </div>
         <div className="container d-flex justify-content-between">
         <button disabled={this.state.page<=1} type="button" className="btn btn-dark" onClick={this.handlePreviousPage}> {'\u2190'} Previous</button>
-        <button disabled={this.state.page+1>Math.ceil(this.state.totalResults/this.props.pageSize)} type="button" className="btn btn-dark  "onClick={this.handleNextPage}>Next {'\u2192'}</button>
+        <button disabled={this.state.page+1>Math.ceil(this.state.totalResults/this.props.pageSize) } type="button" className="btn btn-dark  "onClick={this.handleNextPage}>Next {'\u2192'}</button>
+       
         </div>
 
         
