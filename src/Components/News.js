@@ -14,14 +14,15 @@ export class News extends Component {
      pageSize: PropTypes.number,
      Country: PropTypes.string
   }
-        constructor(){
-            super();
+        constructor(props){
+            super(props);
             this.state={
                 articles: [],
                 loading: false,
                 page:1,
                 totalResults:2
             }
+            document.title=this.props.category
         }
          async updateNews() 
         {
@@ -29,11 +30,12 @@ export class News extends Component {
             this.setState({loading:true })
             let data = await fetch(url);
             let parsedData = await data.json(data);
+           console.log(this.state.page)
            
             
             this.setState({articles: parsedData.articles, totalResults: parsedData.totalResults, loading:false });
         }
-        handleNextPage= async()=>{
+        handleNextPage=  async()=>{
           
          
           this.setState({ page: this.state.page+1});
@@ -43,7 +45,7 @@ export class News extends Component {
           
             
         }
-        handlePreviousPage= async()=>{
+        handlePreviousPage= async ()=>{
          
           this.setState({ page: this.state.page-1});
           this.updateNews()
