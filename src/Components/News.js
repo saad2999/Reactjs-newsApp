@@ -22,7 +22,10 @@ export class News extends Component {
                 page:1,
                 totalResults:2
             }
-            document.title=this.props.category
+            document.title=`${this.CaptalizeFirstLetter (this.props.category)}- NewsPanda`
+        }
+        CaptalizeFirstLetter=(str)=>{
+          return str.charAt(0).toUpperCase() + str.slice(1);
         }
          async updateNews() 
         {
@@ -35,20 +38,16 @@ export class News extends Component {
             
             this.setState({articles: parsedData.articles, totalResults: parsedData.totalResults, loading:false });
         }
-        handleNextPage=  async()=>{
-          
-         
-          this.setState({ page: this.state.page+1});
-          this.updateNews()
+        handleNextPage = () => {
+          this.setState({ page: this.state.page + 1 }, () => {
+            this.updateNews();
+          });
+        };
         
-          
-          
-            
-        }
-        handlePreviousPage= async ()=>{
+        handlePreviousPage=  ()=>{
          
           this.setState({ page: this.state.page-1});
-          this.updateNews()
+            this.updateNews()
 
         }
          async componentDidMount(){
@@ -58,7 +57,7 @@ export class News extends Component {
   render() {
     return (
       <div className='container my-3'>
-        <h1 className='text-center'> NewsPanda -- Top headlines</h1>
+        <h1 className='text-center'> NewsPanda -- Top   {this.CaptalizeFirstLetter (this.props.category)} Headlines</h1>
         {this.state.loading&&<Spinner/>}
         <div className="row">
             {!this.state.loading && this.state.articles.map((element)=>{
