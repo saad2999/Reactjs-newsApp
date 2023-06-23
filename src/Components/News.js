@@ -7,6 +7,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 
 
+
 export class News extends Component {
   static defaultProps = {
     pageSize: 5,
