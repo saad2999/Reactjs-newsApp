@@ -13,7 +13,6 @@ export const News= (props)=> {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [totalResults, setTotalResults] = useState(1);
-  // document.title=`${CaptalizeFirstLetter (props.category)}- NewsPanda`
         
          const CaptalizeFirstLetter=(str)=>{
           return str.charAt(0).toUpperCase() + str.slice(1);
@@ -48,6 +47,8 @@ export const News= (props)=> {
         }       
         useEffect(() => {
         console.log("use effect");
+           document.title=`${CaptalizeFirstLetter (props.category)}- NewsPanda`
+
         updateNews();
         },[])
          
@@ -55,7 +56,7 @@ export const News= (props)=> {
  
     return (
       <>
-        <h1 className='text-center'> NewsPanda -- Top   {CaptalizeFirstLetter (props.category)} Headlines</h1>
+        <h1 className='text-center' style={{margin: "35px 0px" , marginTop: '90px'}}> NewsPanda -- Top   {CaptalizeFirstLetter (props.category)} Headlines</h1>
         {/* {loading&&<Spinner/>} */}
         <InfiniteScroll
           dataLength={articles.length}
@@ -65,9 +66,9 @@ export const News= (props)=> {
         >
           <div className='container'>
         <div className="row">
-            { articles.map((element)=>{
+            { articles.map((element ,index)=>{
                 return <div className="col-md-4"key={element.url}>
-                <NewsItem  title={ element.title? element.title.slice(0.45):""} description={element.description? element.description.slice(0,85):""} imageUrl={element.urlToImage}  newsUrl={element.url} author={element.author} publishedAt={element.publishedAt} source={element.source.name}/>
+                <NewsItem key={index} title={ element.title? element.title.slice(0.45):""} description={element.description? element.description.slice(0,85):""} imageUrl={element.urlToImage}  newsUrl={element.url} author={element.author} publishedAt={element.publishedAt} source={element.source.name}/>
                 </div>
 
 
